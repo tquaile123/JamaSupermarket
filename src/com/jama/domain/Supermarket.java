@@ -2,7 +2,7 @@ package com.jama.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jama.Exception.ProductNotFoundException;
+import com.jama.exception.ProductNotFoundException;
 
 /**
  * The Supermarket class represents the product list and checkout method of a Supermarket
@@ -58,8 +58,6 @@ public class Supermarket {
     public int checkout(String items) throws ProductNotFoundException {
         Integer totalPrice = 0;
 
-
-
         HashMap<Character, Product> productTotalList = new HashMap<Character, Product>();
         for (Character c : items.toCharArray()) {
             if (productList.containsKey(c)) {
@@ -79,7 +77,7 @@ public class Supermarket {
         }
 
         for (Map.Entry<Character,Product> entry : productTotalList.entrySet()) {
-            Product product = (Product)entry.getValue();
+            Product product = entry.getValue();
             totalPrice += product.calculateTotalPrice();
         }
 

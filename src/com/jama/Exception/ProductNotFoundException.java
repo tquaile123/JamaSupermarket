@@ -1,4 +1,4 @@
-package com.jama.Exception;
+package com.jama.exception;
 
 /**
  * The ProductNotFoundException represents an exception for when an item isn't found in the product list/

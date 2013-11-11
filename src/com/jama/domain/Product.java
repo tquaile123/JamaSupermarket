@@ -122,24 +122,23 @@ public class Product {
      * Calculates the total price of all of this product taking into account any special pricing that might apply.
      * If first checks to see if there is any special,  if there is it then checks to see if we have enough
      * of this Product to receive special, if there is it calculates the total price based on the special using
-     * the special multiplier.
+     * the special multiplier and also adding in any remainder outside of special (e.g. 5 for 3 and 14 items
+     * would have 10 items on special and 4 items not.
      * Otherwise it just calculates the total price.
      * @return the calculated total price of all product.
      */
     public int calculateTotalPrice()
     {
-        int totalPrice = 0;
+        int totalPrice = this.getTotalNumberOfProducts() * this.getPrice();
 
         if (this.getNumberForSpecial() > 0) {
             if (this.getTotalNumberOfProducts() >= this.getNumberForSpecial()) {
                 int totalSpecialProducts = this.getTotalNumberOfProducts() / this.getNumberForSpecial();
-                totalPrice += (totalSpecialProducts * this.getSpecialMultiplier()) * this.getPrice();
-            } else {
-                totalPrice = this.getTotalNumberOfProducts() * this.getPrice();
+                totalPrice = (totalSpecialProducts * this.getSpecialMultiplier()) * this.getPrice();
+                int totalNonSpecialProducts = this.getTotalNumberOfProducts() % this.getNumberForSpecial();
+                if (totalNonSpecialProducts > 0)
+                    totalPrice += (totalNonSpecialProducts * this.getPrice());
             }
-        }
-        else {
-            totalPrice = this.getTotalNumberOfProducts() * this.getPrice();
         }
 
         return totalPrice;

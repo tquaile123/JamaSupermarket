@@ -1,16 +1,21 @@
 package com.jama.domain;
 
-import com.jama.Exception.ProductNotFoundException;
+import com.jama.exception.ProductNotFoundException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.HashMap;
 
 /**
- * The JamaSupermarketTest class represents Junit test for the SupermarketClass
+ * The SupermarketTest class represents Junit test for the SupermarketClass
+ * and test the calculate method across many scenarios.
  * @author  Thomas Quaile
  * @version 1.0, November 2013
  */
 public class SupermarketTest {
+    /**
+     * Unit test to test the ABBACBBAB items from the Product list
+     * and also includes a 5 for 3 special on Product B
+     */
     @Test
     public void TestABBACBBAB() {
         HashMap<Character, Product> productList = new HashMap<Character, Product>();
@@ -35,6 +40,10 @@ public class SupermarketTest {
         }
     }
 
+    /**
+     * Unit test to test the ABC items from the Product list
+     * and also includes a 5 for 3 special on Product B
+     */
     @Test
     public void TestABC() {
         HashMap<Character, Product> productList = new HashMap<Character, Product>();
@@ -59,6 +68,10 @@ public class SupermarketTest {
         }
     }
 
+    /**
+     * Unit test to test the ABBACBBABABBACBBAB items from the Product list
+     * and also includes a 5 for 3 special on Product B
+     */
     @Test
     public void TestABBACBBABABBACBBAB() {
         HashMap<Character, Product> productList = new HashMap<Character, Product>();
@@ -83,6 +96,12 @@ public class SupermarketTest {
         }
     }
 
+    /**
+     * Unit test to test the BCABBACBCB items from the Product list
+     * and also includes a 2 for 1 special on Product A
+     * and also includes a 5 for 3 special on Product B
+     * and also includes a 3 for 2 special on Product C
+     */
     @Test
     public void TestBCABBACBCB() {
         HashMap<Character, Product> productList = new HashMap<Character, Product>();
@@ -107,6 +126,11 @@ public class SupermarketTest {
         }
     }
 
+    /**
+     * Unit test to test the BCABBACBCBX items from the Product list
+     * which includes Product X which doesn't not exist in the Product List
+     * causing a ProductNotFoundException to be thrown
+     */
     @Test(expected = ProductNotFoundException.class)
     public void TestProductNotFoundException() throws ProductNotFoundException {
         HashMap<Character, Product> productList = new HashMap<Character, Product>();
